@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include "sortLib.h"
 
-#define SIZE 18
+#define SIZE 17
 #define MAX_VALUE 10000
 #define MIN_VALUE 0
 
@@ -36,6 +36,8 @@ int main()
 
     cout << "1) Bubble sort" << endl
     << "2) Shaker sort" << endl
+    << "3) Merge sort" << endl
+    << "4) Quick sort" << endl
     << "Choose method of sort: ";
     cin >> method;
     switch(method){
@@ -49,6 +51,12 @@ int main()
             sortShaker(array, SIZE);
             printArray(array, SIZE);
             sortShaker(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '3':
+            sortMerge(array, SIZE);
+            printArray(array, SIZE);
+            sortMerge(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
         default:

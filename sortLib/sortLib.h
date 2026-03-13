@@ -4,7 +4,7 @@
 #define M_ASCEND true
 #define M_DECEND false
 
-template <typename Type>    //function of swapping 2 components
+template <typename Type>    //template for function of swapping 2 components
 void swap(Type* a, Type* b) //need for bubble and shaker sorts
 {
     Type temp = *a; //auxiliary variable
@@ -12,7 +12,7 @@ void swap(Type* a, Type* b) //need for bubble and shaker sorts
     *b = temp;
 }
 
-template <typename Type>    //bubble sort
+template <typename Type>    //template for bubble sort
 void sortBubble(Type* array, int size, bool mode = M_ASCEND)
 {
     for(int i = 0; i < size; ++i){  //finding max or min component
@@ -23,7 +23,7 @@ void sortBubble(Type* array, int size, bool mode = M_ASCEND)
     }
 }
 
-template <typename Type>    //shaker sort
+template <typename Type>    //template for shaker sort
 void sortShaker(Type* array, int size, bool mode = M_ASCEND)
 {
     int left_pos = 0, right_pos = size-1;   //left and right slide
@@ -46,5 +46,38 @@ void sortShaker(Type* array, int size, bool mode = M_ASCEND)
         ++left_pos;     //moving the left slide to the right
     }
 }
+
+template <typename Type>    //template for function of copy array
+Type* copyArray(Type* array, int from, int to)  //need for merge and quick sorts
+{
+    Type* new_array = new Type[to-from];
+    for(int i = 0; i < to-from; ++i)
+        new_array[i] = array[from+i];
+    return new_array;
+}
+
+template <typename Type>    //template for merge sort
+void sortMerge(Type* array, int size, bool mode = M_ASCEND)
+{
+    if(size > 1){
+        int middle = size/2;    //variable of the middle of the array
+        Type* left_array = copyArray(array, 0, middle);
+        Type* right_array = copyArray(array, middle, size);
+
+        sortMerge(left_array, middle, mode);
+        sortMerge(right_array, size-middle, mode);
+
+        while()
+        {
+
+        }
+    }
+}
+
+/*template <typename Type>    //template for quick sort
+void sortQuick(Type* array, int size, bool mode = M_ASCEND)
+{
+
+}*/
 
 #endif // SORTLIB_H_INCLUDED
