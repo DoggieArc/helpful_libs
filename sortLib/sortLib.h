@@ -5,7 +5,7 @@
 #define M_DECEND false
 
 template <typename Type>    //template for function of swapping 2 components
-void swap(Type* a, Type* b) //need for bubble and shaker sorts
+void swap(Type* a, Type* b) //need for bubble, shaker and quick sorts
 {
     Type temp = *a; //auxiliary variable
     *a = *b;
@@ -48,7 +48,7 @@ void sortShaker(Type* array, int size, bool mode = M_ASCEND)
 }
 
 template <typename Type>    //template for function of copy array
-Type* copyArray(Type* array, int from, int to)  //need for merge and quick sorts
+Type* copyArray(Type* array, int from, int to)  //need for merge sort
 {
     Type* new_array = new Type[to-from];
     for(int i = 0; i < to-from; ++i)    //copying array
@@ -56,12 +56,14 @@ Type* copyArray(Type* array, int from, int to)  //need for merge and quick sorts
     return new_array;   //return memory position
 }
 
+/*!!! NEED RECONSTRACT !!!
+remove copy array*/
 template <typename Type>    //template for merge sort
 void sortMerge(Type* array, int size, bool mode = M_ASCEND)
 {
     if(size > 1){
         int middle = size/2;    //variable of the middle of the array
-        Type* left_array = copyArray(array, 0, middle);
+        Type* left_array = copyArray(array, 0, middle);     //splitting the array
         Type* right_array = copyArray(array, middle, size);
 
         sortMerge(left_array, middle, mode);
@@ -71,7 +73,7 @@ void sortMerge(Type* array, int size, bool mode = M_ASCEND)
         //i - left_array
         //j - right_array
         //k - array
-        while(i < middle && j < size-middle)
+        while(i < middle && j < size-middle)    //merging
         {
             if((left_array[i] < right_array[j]) == mode){
                 array[k] = left_array[i];
@@ -102,10 +104,34 @@ void sortMerge(Type* array, int size, bool mode = M_ASCEND)
     }
 }
 
-/*template <typename Type>    //template for quick sort
-void sortQuick(Type* array, int size, bool mode = M_ASCEND)
-{
+template <typename Type>    //template for quick sort
+int partitionPivot(Type* array, int high, int low, bool mode = M_ASCEND){
+    Type pivot = array[high];
+    int pos = low;  //the slide for find component smaller then pivot
 
-}*/
+    for(int i = low; i < high; ++i){    //find component smaller then pivot
+        if((array[i] < pivot) == mode){
+            swap(&array[pos], &array[i]);
+            ++pos;
+        }
+    }
+
+    swap(&array[pos], &array[high]);    //swap pivot and last small element
+    return pos;     //return pivot pos
+}
+
+template <typename Type>    //template for quick sort
+void sortQuickSource(Type* array, int high, int low = 0, bool mode = M_ASCEND)
+{
+    if(low < high){
+        int possition_pivot = partitionPivot(array, high, low, mode);   //finding pivot
+
+        sortQuickSource(array, possition_pivot-1, low, mode);   //splitting the array
+        sortQuickSource(array, high, possition_pivot+1, mode);
+    }
+}
+
+template <typename Type>    //template for fix quick sort
+void sortQuick(Type* array, int size, bool mode = M_ASCEND) {sortQuickSource(array, size-1, 0, mode);}
 
 #endif // SORTLIB_H_INCLUDED

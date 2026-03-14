@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include "sortLib.h"
 
-#define SIZE 17
+#define SIZE 16
 #define MAX_VALUE 10000
 #define MIN_VALUE 0
 
@@ -58,6 +58,12 @@ int main()
             sortMerge(array, SIZE);
             printArray(array, SIZE);
             sortMerge(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '5':
+            sortQuick(array, SIZE);
+            printArray(array, SIZE);
+            sortQuick(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
         default:
