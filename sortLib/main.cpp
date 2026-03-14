@@ -36,8 +36,9 @@ int main()
 
     cout << "1) Bubble sort" << endl
     << "2) Shaker sort" << endl
-    << "3) Merge sort" << endl
-    << "4) Quick sort" << endl
+    << "3) Select sort" << endl
+    << "4) Merge sort" << endl
+    << "5) Quick sort" << endl
     << "Choose method of sort: ";
     cin >> method;
     switch(method){
@@ -53,7 +54,7 @@ int main()
             sortShaker(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
-        case '3':
+        case '4':
             sortMerge(array, SIZE);
             printArray(array, SIZE);
             sortMerge(array, SIZE, M_DECEND);

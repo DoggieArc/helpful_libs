@@ -51,9 +51,9 @@ template <typename Type>    //template for function of copy array
 Type* copyArray(Type* array, int from, int to)  //need for merge and quick sorts
 {
     Type* new_array = new Type[to-from];
-    for(int i = 0; i < to-from; ++i)
+    for(int i = 0; i < to-from; ++i)    //copying array
         new_array[i] = array[from+i];
-    return new_array;
+    return new_array;   //return memory position
 }
 
 template <typename Type>    //template for merge sort
@@ -67,9 +67,37 @@ void sortMerge(Type* array, int size, bool mode = M_ASCEND)
         sortMerge(left_array, middle, mode);
         sortMerge(right_array, size-middle, mode);
 
-        while()
+        int i = 0, j = 0, k = 0;    //position of slides:
+        //i - left_array
+        //j - right_array
+        //k - array
+        while(i < middle && j < size-middle)
         {
+            if((left_array[i] < right_array[j]) == mode){
+                array[k] = left_array[i];
+                ++i;
+            }
+            else{
+                array[k] = right_array[j];
+                ++j;
+            }
+            ++k;
+        }
 
+        // Copy the remaining components of left_array,
+        // if there are any
+        while(i < middle){
+            array[k] = left_array[i];
+            ++i;
+            ++k;
+        }
+
+        // Copy the remaining components of right_array,
+        // if there are any
+        while(j < size-middle){
+            array[k] = right_array[j];
+            ++j;
+            ++k;
         }
     }
 }
