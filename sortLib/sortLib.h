@@ -134,4 +134,22 @@ void sortQuickSource(Type* array, int high, int low = 0, bool mode = M_ASCEND)
 template <typename Type>    //template for fix quick sort
 void sortQuick(Type* array, int size, bool mode = M_ASCEND) {sortQuickSource(array, size-1, 0, mode);}
 
+
+template <typename Type>    //template for insertion sort
+void sortInsertion(Type* array, int size, bool mode = M_ASCEND)
+{
+    int j;  //position of the sorting value
+    Type temp;
+    for(int i = 1; i < size; ++i){  //check all elements
+         temp = array[i];
+         j = i - 1;
+
+         while(j >= 0 && ((array[j] > temp) == mode)){  //reposition sorting element
+             array[j + 1] = array[j];
+             j = j - 1;
+
+         array[j + 1] = temp;
+         }
+    }
+}
 #endif // SORTLIB_H_INCLUDED

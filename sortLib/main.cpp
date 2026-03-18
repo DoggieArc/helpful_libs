@@ -39,6 +39,7 @@ int main()
     << "3) Select sort" << endl
     << "4) Merge sort" << endl
     << "5) Quick sort" << endl
+    << "6) Insertion sort" << endl
     << "Choose method of sort: ";
     cin >> method;
     switch(method){
@@ -64,6 +65,12 @@ int main()
             sortQuick(array, SIZE);
             printArray(array, SIZE);
             sortQuick(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '6':
+            sortInsertion(array, SIZE);
+            printArray(array, SIZE);
+            sortInsertion(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
         default:
