@@ -47,6 +47,30 @@ void sortShaker(Type* array, int size, bool mode = M_ASCEND)
     }
 }
 
+template <typename Type>    //template for function of the find minimum value
+int Min(Type* array, int from, int to, bool mode)    // need for selection sort
+{
+    int index_min = from;
+    for(int i = from+1; i < to; ++i){
+        if((array[index_min] > array[i]) == mode)
+            index_min = i;
+    }
+    return index_min;
+}
+
+template <typename Type>    //template for selection sort
+void sortSelection(Type* array, int size, bool mode = M_ASCEND)
+{
+    int index_min;
+    for(int i = 0; i < size; ++i){
+        index_min = Min(array, i, size, mode);
+        if(index_min == i)
+            continue;
+
+        swap(&array[i], &array[index_min]);
+    }
+}
+
 template <typename Type>    //template for function of copy array
 Type* copyArray(Type* array, int from, int to)  //need for merge sort
 {
@@ -73,8 +97,7 @@ void sortMerge(Type* array, int size, bool mode = M_ASCEND)
         //i - left_array
         //j - right_array
         //k - array
-        while(i < middle && j < size-middle)    //merging
-        {
+        while(i < middle && j < size-middle){    //merging
             if((left_array[i] < right_array[j]) == mode){
                 array[k] = left_array[i];
                 ++i;

@@ -36,7 +36,7 @@ int main()
 
     cout << "1) Bubble sort" << endl
     << "2) Shaker sort" << endl
-    << "3) Select sort" << endl
+    << "3) Selection sort" << endl
     << "4) Merge sort" << endl
     << "5) Quick sort" << endl
     << "6) Insertion sort" << endl
@@ -50,6 +50,12 @@ int main()
             printArray(array, SIZE);
             break;
         case '2':
+            sortSelection(array, SIZE);
+            printArray(array, SIZE);
+            sortSelection(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '3':
             sortShaker(array, SIZE);
             printArray(array, SIZE);
             sortShaker(array, SIZE, M_DECEND);
