@@ -50,24 +50,24 @@ void sortShaker(Type* array, int size, bool mode = M_ASCEND)
 template <typename Type>    //template for function of the find minimum value
 int Min(Type* array, int from, int to, bool mode)    // need for selection sort
 {
-    int index_min = from;
-    for(int i = from+1; i < to; ++i){
-        if((array[index_min] > array[i]) == mode)
-            index_min = i;
+    int index = from;
+    for(int i = from+1; i < to; ++i){   //searching min or max value
+        if((array[index] > array[i]) == mode)
+            index = i;
     }
-    return index_min;
+    return index;
 }
 
 template <typename Type>    //template for selection sort
 void sortSelection(Type* array, int size, bool mode = M_ASCEND)
 {
-    int index_min;
+    int index;
     for(int i = 0; i < size; ++i){
-        index_min = Min(array, i, size, mode);
-        if(index_min == i)
+        index = Min(array, i, size, mode);  //searching min or max value
+        if(index == i)  //if the element is the desired value
             continue;
 
-        swap(&array[i], &array[index_min]);
+        swap(&array[i], &array[index]);
     }
 }
 
@@ -173,6 +173,21 @@ void sortInsertion(Type* array, int size, bool mode = M_ASCEND)
 
          array[j + 1] = temp;
          }
+    }
+}
+
+template <typename Type>    //template for gnome sort
+void sortGnome(Type* array, int size, bool mode = M_ASCEND)
+{
+    int slide_pos = 1;
+    while(slide_pos < size)
+    {
+        if(((array[slide_pos] > array[slide_pos-1]) == mode) || (array[slide_pos] == array[slide_pos-1]) || slide_pos == 0)
+            ++slide_pos;    //step forward
+        else{
+            swap(&array[slide_pos], &array[slide_pos-1]);
+            --slide_pos;    //step back
+        }
     }
 }
 #endif // SORTLIB_H_INCLUDED

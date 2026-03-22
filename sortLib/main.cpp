@@ -4,8 +4,9 @@
 #include "sortLib.h"
 
 #define SIZE 16
-#define MAX_VALUE 10000
+#define MAX_VALUE 10
 #define MIN_VALUE 0
+#define ORDER 1
 
 using namespace std;
 
@@ -14,7 +15,7 @@ void fillWithRandom(Type* array, int size)
 {
     srand(time(NULL));
     for(int i = 0; i < size; ++i)
-        array[i] = (double)(rand() % (MAX_VALUE-MIN_VALUE) + MIN_VALUE+1)/100;
+        array[i] = (double)(rand() % (MAX_VALUE-MIN_VALUE) + MIN_VALUE+1)/ORDER;
 }
 
 template <typename Type>
@@ -40,6 +41,7 @@ int main()
     << "4) Merge sort" << endl
     << "5) Quick sort" << endl
     << "6) Insertion sort" << endl
+    << "7) Gnome sort" << endl
     << "Choose method of sort: ";
     cin >> method;
     switch(method){
@@ -77,6 +79,12 @@ int main()
             sortInsertion(array, SIZE);
             printArray(array, SIZE);
             sortInsertion(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '7':
+            sortGnome(array, SIZE);
+            printArray(array, SIZE);
+            sortGnome(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
         default:
