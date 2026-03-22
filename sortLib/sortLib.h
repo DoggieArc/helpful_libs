@@ -191,6 +191,7 @@ void sortGnome(Type* array, int size, bool mode = M_ASCEND)
     }
 }
 
+//!I don't fully understand how it works
 #define SHRINK 1.247
 template <typename Type>    //template for comb sort
 void sortComb(Type* array, int size, bool mode = M_ASCEND)
@@ -212,4 +213,35 @@ void sortComb(Type* array, int size, bool mode = M_ASCEND)
         }
     }
 }
+
+//count sort by Vladimir
+/*void counting_sort(int *array, int size) {
+    int max_value = find_max(array, size);
+    int min_value = find_min(array, size);
+    int d_size = max_value-min_value+1;
+
+    int *counting_array = new int[d_size];
+    for(int i = 0; i < d_size; i++) {
+        counting_array[i] = 0;
+    }
+
+
+    //
+    for(int i = 0; i < size; i++) {
+        counting_array[array[i]-min_value]++;
+    }
+
+    int k = 0;
+    for(int j = 0; j < d_size; j++) {
+        while(counting_array[j] > 0) {
+            array[k] = j + min_value;
+            k++;
+            counting_array[j]--;
+        }
+    }
+
+    delete[] counting_array;
+}
+*/
+
 #endif // SORTLIB_H_INCLUDED
