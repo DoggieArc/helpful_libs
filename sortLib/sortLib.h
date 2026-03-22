@@ -5,7 +5,7 @@
 #define M_DECEND false
 
 template <typename Type>    //template for function of swapping 2 components
-void swap(Type* a, Type* b) //need for bubble, shaker and quick sorts
+void swap(Type* a, Type* b) //need for bubble, shaker, selection, quick, gnome sorts
 {
     Type temp = *a; //auxiliary variable
     *a = *b;
@@ -187,6 +187,28 @@ void sortGnome(Type* array, int size, bool mode = M_ASCEND)
         else{
             swap(&array[slide_pos], &array[slide_pos-1]);
             --slide_pos;    //step back
+        }
+    }
+}
+
+#define SHRINK 1.247
+template <typename Type>    //template for comb sort
+void sortComb(Type* array, int size, bool mode = M_ASCEND)
+{
+    int gap = size;
+    bool swapped = true;
+
+    while (gap > 1 || swapped == true){
+        gap = gap / SHRINK;
+        if(gap < 1)
+            gap = 1;
+
+        swapped = false;
+        for (int i = 0; i < size-gap; ++i){
+            if((array[i] > array[i+gap]) == mode){
+                swap(&array[i], &array[i+gap]);
+                swapped = true;
+            }
         }
     }
 }

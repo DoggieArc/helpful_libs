@@ -4,9 +4,9 @@
 #include "sortLib.h"
 
 #define SIZE 16
-#define MAX_VALUE 10
+#define MAX_VALUE 10000
 #define MIN_VALUE 0
-#define ORDER 1
+#define ORDER 100
 
 using namespace std;
 
@@ -42,6 +42,9 @@ int main()
     << "5) Quick sort" << endl
     << "6) Insertion sort" << endl
     << "7) Gnome sort" << endl
+    << "8) Comb sort" << endl
+    << "9) Counting sort" << endl
+    << "10) Heapsort" << endl
     << "Choose method of sort: ";
     cin >> method;
     switch(method){
@@ -85,6 +88,12 @@ int main()
             sortGnome(array, SIZE);
             printArray(array, SIZE);
             sortGnome(array, SIZE, M_DECEND);
+            printArray(array, SIZE);
+            break;
+        case '8':
+            sortComb(array, SIZE);
+            printArray(array, SIZE);
+            sortComb(array, SIZE, M_DECEND);
             printArray(array, SIZE);
             break;
         default:
